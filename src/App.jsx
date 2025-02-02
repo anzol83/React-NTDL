@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import AddTaskForm from './components/AddTaskForm'
 import Header from './components/Header'
-import TaskListItem from './components/TaskLIstItem'
+import TaskListItem from './components/TaskListItem'
+import TotalTime from './components/TotalTime'
 
 function App() {
   const storedTaskList = JSON.parse(localStorage.getItem("taskList")) || []
@@ -106,11 +107,17 @@ function App() {
           {/* <!---Second Row--> */}
           <div className="row gap-2 mt-4">
             {/* <!--First Column--> */}
-            <div className="col border fw-bold alert alert-primary">Total Time in a Day: <span id="totalTimeInDayElement"></span></div>
+            <div className="col border fw-bold alert alert-primary">
+              Total Time in a Day: <span>24</span>
+            </div>
             {/* <!--Second Column--> */}
-            <div className="col border fw-bold alert alert-success">Total Time Spent: <span id="totalTimeElement"></span></div>
+            <div className="col border fw-bold alert alert-success">
+              <TotalTime taskList={taskList} taskType="entry" />
+            </div>
             {/* <!--Third Column--> */}
-            <div className="col border fw-bold alert alert-danger">Total time wasted: <span id="totalWastedTimeElement"></span></div>
+            <div className="col border fw-bold alert alert-danger">
+              <TotalTime taskList={unwantedTypeTask} taskType="unwanted" />
+            </div>
           </div>
         </div>
       </section>
